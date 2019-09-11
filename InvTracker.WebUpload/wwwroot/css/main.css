@@ -1,0 +1,123 @@
+  .mt-5{
+    margin-top: 5px !important
+  }
+  .checkbox, .radio {
+    display: -webkit-inline-box;
+    margin-left: 15px;
+  }
+  .btn{
+    margin-bottom: 10px;
+    min-width:100px;
+  }
+  .image-edit .profile-image{
+    border: 5px solid #e4e4e4;
+    margin-bottom: 10px;
+    width: 160px;
+  }
+  .image-edit ul li a{
+    padding: 3px 10px !important;
+    background: #3c8cbc;
+    color: #fff;
+    border-radius: 4px;
+  }
+  .table > thead{
+    background: #3c8cbc;
+    color: #fff;
+  }
+
+  .left-nav{
+    display: -webkit-inline-box;
+  }
+  .left-nav li .title{
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 14px;
+    padding-bottom: 13px;
+  }
+  .left-nav li .title span{
+    font-size: 14px;
+    text-transform: initial;
+    margin-left: 5px;
+  }
+  .content-header>.breadcrumb {
+    top: 0px;
+  }
+  .sidebar-form .input-group-btn>.btn {
+    margin-bottom: 0px;
+  }
+label{
+  margin-bottom: 0px;
+  font-weight: 700;
+  font-size: 12px;
+}
+.form-group {
+  margin-bottom: 3px;
+}
+.form-box{
+  border: 1px solid #ddd;
+  margin: 0px;
+  padding: 10px 0px 9px;
+}
+.form-title{
+  position: relative;
+  top: 13px;
+  background: #fff;
+  display: -webkit-inline-box;
+  padding: 0px 16px;
+  left: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0px;
+}
+.user-details-top table>tbody>tr>th{
+  border-top: transparent;
+  padding: 4px 14px 0px;
+}
+.user-details-top .table-responsive{
+  border:transparent;
+  margin-bottom: 0px;
+}
+.user-details-top table{
+  margin-bottom: 0px;
+}
+
+.profile-image img{
+  max-width: 50px;
+  border-radius: 50px;
+}
+.profile-image h4{
+  font-weight: 700;
+}
+th{
+  width: 20%;
+}
+
+.form-control {
+  height: 30px;
+  padding: 2px 5px;
+}
+.checkbox, .radio {
+    margin-bottom: 0px;
+}
+.input-group .btn{
+  padding: 4px 12px;
+}
+/*.input-group{
+  margin-top: 5px;
+}*/
+.btn-danger {
+  background-color: #f44336 !important;
+  border-color: #f44336 !important;
+}
+
+
+.select2-container .select2-selection--single {
+height:30px !important;
+border-radius:1px !important;
+padding:5px 0px !important;
+}
+
+
+
+/*.select2-container--default .select2-selection--single*/

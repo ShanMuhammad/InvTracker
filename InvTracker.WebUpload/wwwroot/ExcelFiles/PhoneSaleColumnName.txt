@@ -1,0 +1,1 @@
+﻿Fos Code,Retailer Code,Retailer Name,Brand Name,Amount,Brand Type,Model,Material,SKU ID,IMEI 1,Activation Date

@@ -1,0 +1,165 @@
+<section class="content">
+  <div class="box">
+    <form role="form" (ngSubmit)="onSubmit()" [formGroup]="AddProductForm">
+      <div class="box-body">
+        <p-fieldset legend="Product Master">
+          <div class="row">
+            <div class="col-md-3">
+              <label class="required">Product Category</label>
+              <p-dropdown (onChange)="getProductSubCategory($event.value)" [options]="ProductCategoryList" formControlName="ProductCategoryId"></p-dropdown>
+              <mat-error *ngIf="getFormControls('ProductCategoryId').invalid && (getFormControls('ProductCategoryId').dirty || getFormControls('ProductCategoryId').touched)"
+                         class="ValidationError">
+                <mat-error *ngIf="getFormControls('ProductCategoryId').errors.required">
+                  Select Product Category
+                </mat-error>
+              </mat-error>
+            </div>
+            <div class="col-md-3">
+              <label class="required">Product Sub Category</label>
+              <p-dropdown placeholder="Select" [options]="ProductSubCategoryList" formControlName="ProductSubCategoryId"></p-dropdown>
+              <mat-error *ngIf="getFormControls('ProductSubCategoryId').invalid && (getFormControls('ProductSubCategoryId').dirty || getFormControls('ProductSubCategoryId').touched)"
+                         class="ValidationError">
+                <mat-error *ngIf="getFormControls('ProductSubCategoryId').errors.required">
+                  Select Sub Product Category
+                </mat-error>
+              </mat-error>
+            </div>
+            <div class="col-md-3">
+              <label class="required" for="Company">Product Company</label>
+              <p-dropdown formControlName="ProductCompanyId" [options]="ProductCompanyList" id="ProductCompanyId" ></p-dropdown>
+              <mat-error *ngIf="getFormControls('ProductCompanyId').invalid && (getFormControls('ProductCompanyId').dirty || getFormControls('ProductCompanyId').touched)"
+                         class="ValidationError">
+                <mat-error *ngIf="getFormControls('ProductCompanyId').errors.required">
+                  Select Product Company
+                </mat-error>
+              </mat-error>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="required" for="">Status</label>
+                <div class="form-radio-box">
+                  <mat-radio-group formControlName="IsActive">
+                    <mat-radio-button value="true">Active</mat-radio-button>
+                    <mat-radio-button value="false">InActive</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <label class="required" for="ProductCode">Product Code</label>
+              <input type="text" formControlName="ProductCode" class="form-control" id="ProductCode" placeholder="Product Code">
+              <mat-error *ngIf="getFormControls('ProductCode').invalid && (getFormControls('ProductCode').dirty || getFormControls('ProductCode').touched)"
+                         class="ValidationError">
+                <mat-error *ngIf="getFormControls('ProductCode').errors.required">
+                  Select Enter Product Code
+                </mat-error>
+              </mat-error>
+            </div>
+            <div class="col-md-6">
+              <label class="required" for="ProductName">Product Name</label>
+              <input type="text" class="form-control" formControlName="ProductName" id="ProductName" placeholder="Product Name">
+            </div>
+            <div class="col-md-3">
+              <label for="HSNCode">HSN Code</label>
+              <input type="text" formControlName="HSNCode" class="form-control" id="HSNCode" placeholder="HSN Code">
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="SACCode">SAC Code</label>
+              <input type="text" class="form-control" formControlName="SACCode" id="SACCode" placeholder="SAC Code">
+            </div>
+            <div class="col-md-3">
+              <label for="Packing">Packing</label>
+              <input type="text" formControlName="Packing" class="form-control" id="Packing" placeholder="Packing">
+            </div>
+            <div class="col-md-3">
+              <label for="PurchaseUnitId">Purchase Unit</label>
+              <p-dropdown formControlName="PurchaseUnitId" [options]="UnitList" id="PurchaseUnitId"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label for="SalesUnitId">Sales Unit</label>
+              <p-dropdown formControlName="SalesUnitId" [options]="UnitList" id="SalesUnitId"></p-dropdown>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="PuchaseTaxId">Purchase Tax</label>
+              <p-dropdown formControlName="PuchaseTaxId" [options]="TaxList" id="PuchaseTaxId" ></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label for="SaleTaxId">Sales Tax</label>
+              <p-dropdown formControlName="SaleTaxId" [options]="TaxList" id="SaleTaxId"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label>Tax Aplicability</label>
+              <div class="form-radio-box">
+                <mat-radio-group aria-label="Select an option" formControlName="TaxAplicability">
+                  <mat-radio-button value="1">Inclusive</mat-radio-button>
+                  <mat-radio-button value="2">Exclusive</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="ProductDescription">Product Description</label>
+              <textarea type="text" class="form-control" formControlName="ProductDescription" id="ProductDescription" placeholder="Product Description"></textarea>
+            </div>
+          </div>
+        </p-fieldset>
+        <p-fieldset legend="Product Measurement">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="ProductHeight">Product Height</label>
+              <input type="text" class="form-control" id="ProductHeight" placeholder="Product Height">
+            </div>
+            <div class="col-md-3">
+              <label for="ProductWeight">Product Weight</label>
+              <input type="text" class="form-control" id="ProductWeight" placeholder="Product Weight">
+            </div>
+            <div class="col-md-3">
+              <label for="ProductLength">Product Length</label>
+              <input type="text" class="form-control" id="ProductLength" placeholder="Product Length">
+            </div>
+            <div class="col-md-3">
+              <label for="ProductNumber">Product Size</label>
+              <input type="text" class="form-control" id="ProductSize" placeholder="Product Size  ">
+            </div>
+          </div>
+        </p-fieldset>
+
+        <div class="box-footer">
+          <div class="row">
+            <div class="buttonDiv pull-right">
+              <div class="col-md-4">
+                <button mat-stroked-button>Submit</button>
+              </div>
+              <div class="col-md-4">
+                <button mat-stroked-button>Reset</button>
+              </div>
+              <div class="col-md-4">
+                <button mat-stroked-button>Exit</button>
+              </div>
+            </div>
+            
+            <!--<div class="col-md-2 col-sm-4 col-xs-6 pull-right mt-5">
+              <button type="submit" class="btn btn-block btn-danger">Exit</button>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 pull-right mt-5">
+              <button type="submit" class="btn btn-block btn-success">Save</button>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

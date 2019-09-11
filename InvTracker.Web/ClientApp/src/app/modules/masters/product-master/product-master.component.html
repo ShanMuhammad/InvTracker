@@ -1,0 +1,126 @@
+<section class="content">
+  <div class="box">
+
+
+    <div class="box-body">
+      <form role="form" (ngSubmit)="getProductMaster(0)" [formGroup]="ViewProductForm">
+        <p-panel [toggleable]="true" toggler="header" collapsed="true">
+          <p-header>
+            Expand to search
+          </p-header>
+          <div class="row">
+            <div class="col-md-3">
+              <label>Product Category</label>
+              <p-dropdown (onChange)="getProductSubCategory($event.value)" [options]="ProductCategoryList" formControlName="ProductCategoryId"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label>Product Sub Category</label>
+              <p-dropdown placeholder="Select" [options]="ProductSubCategoryList" formControlName="ProductSubCategoryId"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label>Product Company</label>
+              <p-dropdown formControlName="ProductCompanyId" [options]="ProductCompanyList" id="ProductCompanyId"></p-dropdown>
+            </div>
+            <div class="col-md-3">
+              <label>Product Code</label>
+              <input type="text" formControlName="ProductCode" class="form-control" id="ProductCode" placeholder="Product Code">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label>Product Name</label>
+              <input type="text" class="form-control" formControlName="ProductName" id="ProductName" placeholder="Product Name">
+            </div>
+          </div>
+          <p-footer>
+            <!--<div class="buttonDiv pull-right">
+              <div class="col-md-4">
+                <button type="submit" mat-stroked-button>Search</button>
+              </div>
+              <div class="col-md-4">
+                <button type="button" (click)="reset()" mat-stroked-button>Reset</button>
+              </div>
+              <div class="col-md-4">
+                <button type="button" (click)="exit()" mat-stroked-button>Exit</button>
+              </div>
+            </div>-->
+            <button type="submit" mat-stroked-button>Search</button>
+            <button type="button" (click)="reset()" mat-stroked-button>Reset</button>
+            <button type="button" (click)="exit()" mat-stroked-button>Exit</button>
+          </p-footer>
+        </p-panel>
+      </form>
+      <br />
+      <div class="mat-elevation-z8">
+        <p-table [columns]="displayedColumns" [value]="dataProductMaster" [lazy]="true" (onLazyLoad)="getProductMaster($event.first)" paginator="true"
+                 [rows]="1" [totalRecords]="totalLength" [loading]="isLoadingResults">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns">
+                {{col.header}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <!--<p-paginator [rows]="10" totalRecords="{{totalLength}}" (onPageChange)="getProductMaster($event.first)"></p-paginator>-->
+      </div>
+      <!--    <div class="mat-elevation-z8">
+                <div class="tabel-loading-shade"
+                     *ngIf="isLoadingResults || isRateLimitReached">
+                  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+                </div>
+
+                <div class="table-container">
+
+                  <table mat-table [dataSource]="dataProductMaster"
+                         matSort matSortActive="ProductCode" matSortDisableClear matSortDirection="desc">
+
+                    <ng-container matColumnDef="ProductCode">
+                      <th mat-header-cell *matHeaderCellDef>Product Code</th>
+                      <td mat-cell *matCellDef="let row">{{row.ProductCode}}</td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="ProductName">
+                      <th mat-header-cell *matHeaderCellDef>Product Name</th>
+                      <td mat-cell *matCellDef="let row">{{row.ProductName}}</td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="ProductCategoryName">
+                      <th mat-header-cell *matHeaderCellDef>Category Name</th>
+                      <td mat-cell *matCellDef="let row">{{row.ProductCategoryName}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ProductSubCategoryName">
+                      <th mat-header-cell *matHeaderCellDef>Sub Category Name</th>
+                      <td mat-cell *matCellDef="let row">{{row.ProductSubCategoryName}}</td>
+                    </ng-container>
+
+                    Created Column
+                <ng-container matColumnDef="created">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                    Created
+                  </th>
+                  <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+                </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+
+        <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+      </div> -->
+
+
+    </div>
+  </div>
+</section>

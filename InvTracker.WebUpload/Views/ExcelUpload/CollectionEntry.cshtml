@@ -1,0 +1,131 @@
+﻿@model InvTracker.WebUpload.Models.SalesCollectionVM
+@{
+    ViewData["Title"] = "Collection Page";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+            <form role="form" asp-action="CollectionEntry" method="post">
+                <div class="box-body">
+                    <!-- <h3 class="form-title">Product Details</h3> -->
+
+
+                    <div class="row">
+                        @*<div class="col-md-3">
+                                <div class="form-group">
+                                    <label>FOS Name</label>
+                                    <select class="form-control select2" asp-for="FOSCode" asp-items="Model.FOSList">
+                                    </select>
+                                    <span asp-validation-for="FOSCode" class="text-danger"></span>
+                                </div>
+                            </div>*@
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Retailer Name</label>
+                                <select class="form-control select2" onchange="GetSalesData(this.value)" asp-for="RetailerCode" asp-items="Model.RetailerList">
+                                </select>
+                                <span asp-validation-for="RetailerCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Receipt Number</label>
+                                <input type="text" class="form-control" asp-for="ReceiptNumber">
+                                <span asp-validation-for="ReceiptNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Receipt Date</label>
+                                <div class="input-group date">
+                                    <input type="text" class="form-control datepicker" asp-for="ReceiptDate">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="ReceiptDate" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="SaleDataTable">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="TotalBalance">Total Balance</label>
+                                <input disabled type="text" class="form-control" asp-for="TotalBalance">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="TotalBalance">Selected Balance</label>
+                                <input disabled type="text" class="form-control" asp-for="SelectedBalance">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="ReceivedAmount">Received Ammount</label>
+                                <input type="text" class="form-control" asp-for="ReceivedAmount" onblur="ValidateAmount()">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-12">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3 pull-right mt-5">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger"> Exit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.box -->
+</section>
+
+<script>
+    function GetSalesData(RetailerCode) {
+        $.ajax({
+            url: "ExcelUpload/_PhoneSalesList",
+            type: "Get",
+            data: {
+                RetailerCode: RetailerCode
+            },
+            success: function (responce) {
+                $("#SaleDataTable").html(responce);
+                $("#TotalBalance").val($("#HDNTotalBalance").val());
+            }
+        })
+    }
+    $(document).ready(function () {
+        GetSalesData(null);
+    })
+
+    function ValidateAmount() {
+        debugger;
+        var SelectedBalance = $("#SelectedBalance").val() == '' ? 0 : parseFloat($("#SelectedBalance").val());
+        var ReceivedAmount = $("#ReceivedAmount").val() == '' ? 0 : parseFloat($("#ReceivedAmount").val());
+        if (SelectedBalance == null || SelectedBalance == 0 || SelectedBalance == '') {
+            alert("Please Select Sale Data from List");
+            $("#ReceivedAmount").val(null);
+            return;
+        }
+        if (SelectedBalance < ReceivedAmount) {
+            alert("Received Amount Can't be More than Selected Due Balance")
+            $("#ReceivedAmount").val(null);
+        }
+    }
+
+</script>
